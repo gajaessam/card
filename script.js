@@ -80,7 +80,7 @@ function createCardRow(num) {
   const input = document.createElement('input');
   input.type = 'text';
   input.className = 'card-term-input';
-  input.placeholder = `용어 ${num} 입력`;
+  input.placeholder = `키워드 ${num} 입력`;
   input.id = `term-${num}`;
   input.addEventListener('input', () => {
     syncCardsFromDOM();
@@ -114,7 +114,7 @@ function createCardRow(num) {
       preview.innerHTML = `<img src="${url}" alt="미리보기"/>`;
       imgBtn.textContent = '✅ 변경';
       imgBtn.classList.add('has-img');
-      // 파일명으로 용어 자동 채우기 (입력값 없을 때)
+      // 파일명으로 키워드 자동 채우기 (입력값 없을 때)
       if (!input.value.trim()) {
         const name = file.name.replace(/\.[^/.]+$/, '');
         input.value = name;
@@ -214,7 +214,7 @@ function handleBulkFiles(files) {
       const previewDiv = row.querySelector('.card-mini-preview');
       const imgBtn = row.querySelector('.card-img-btn');
 
-      // 파일명 → 용어
+      // 파일명 → 키워드
       if (!input.value.trim()) {
         input.value = file.name.replace(/\.[^/.]+$/, '');
       }
@@ -242,7 +242,7 @@ function handleBulkFiles(files) {
 function startGame() {
   syncCardsFromDOM();
 
-  // 유효성 검사: 최소 2쌍, 용어 입력 확인
+  // 유효성 검사: 최소 2쌍, 키워드 입력 확인
   const validCards = gameState.cards.filter(c => c.term || c.imageDataUrl);
   if (validCards.length < 2) {
     showToast('❗ 최소 2개의 카드 정보를 입력해주세요!');

@@ -97,41 +97,46 @@ html, body {
 }
 
 /* 설정 본문 2컬럼 */
+/* ─── 설정 본문 레이아웃 수정 ─── */
 .setup-body {
   flex: 1;
   display: flex;
-  overflow: hidden;
+  overflow: hidden; 
   gap: 0;
-  max-width: 2600px;
+  /* 가로 폭 제한을 대폭 늘리거나 해제하여 큰 모니터에 대응 */
+  max-width: 100%; 
   margin: 0 auto;
   width: 100%;
-  padding: 0 40px;
+  /* 상하좌우 여백을 화면 비율에 맞게 조정 (vh, vw 사용) */
+  padding: 1.5vh 2vw; 
+  box-sizing: border-box;
 }
 
 .setup-col {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 12px 18px;
-  overflow-y: auto; /* keep as auto but aim for no scroll */
-  margin: 10px;
+  gap: 12px;
+  padding: 20px;
   background: var(--bg-card);
   border: 3px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  /* 내부 콘텐츠가 넘치면 스크롤하되, 컬럼 자체는 고정 */
+  overflow-y: auto; 
 }
 
+/* 왼쪽 방법1 영역: 더 넓게 차지하도록 */
 .left-col { 
-  flex: 5.5; 
-  min-width: 450px; 
+  flex: 1.2; /* 오른쪽보다 약간 더 넓게 설정 */
+  min-width: 500px; 
   display: flex;
   flex-direction: column;
 }
 
+/* 오른쪽 방법2 영역 */
 .right-col { 
-  flex: 4.5; 
-  min-width: 400px; /* 너무 작아지지 않게 최소폭 유지 */
+  flex: 1; 
+  min-width: 500px; 
 }
 
 /* STEP 레이블 */
@@ -145,14 +150,15 @@ html, body {
 .step-number {
   background: var(--text-dark);
   color: var(--accent-yellow);
-  font-size: 1rem;
   font-family: var(--font-jua);
-  padding: 4px 14px;
   border-radius: 20px;
   letter-spacing: 1px;
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  padding: 6px 16px;
 }
 .step-title {
-  font-size: 1.5rem;
+  /* 화면 너비에 따라 폰트 크기가 유동적으로 변함 */
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem); 
   font-family: var(--font-jua);
   color: var(--text-dark);
 }
@@ -451,8 +457,9 @@ html, body {
 }
 
 /* ─── 중앙 구분선 ─── */
+/* 구분선 영역 (간격 최적화) */
 .divider-col {
-  flex: 0 0 60px;
+  flex: 0 0 80px; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -488,7 +495,7 @@ html, body {
   flex: 1;
   overflow-y: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: 1fr;
   gap: 10px;
   padding: 4px;
 }
