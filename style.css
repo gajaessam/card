@@ -75,7 +75,7 @@ html, body {
   align-items: center;
   gap: 12px;
   width: 100%;
-  max-width: 1300px;
+  max-width: 1600px;
   padding: 16px 10px;
 }
 .logo-badge {
@@ -110,7 +110,7 @@ html, body {
   overflow: hidden;
   gap: 10px;
   width: 100%;
-  max-width: 1300px;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 0 10px;
 }
