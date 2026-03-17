@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>짝꿍찾기 게임 설정</title>
+  <meta name="description" content="교육용 짝꿍찾기 메모리 카드 게임 - 용어와 이미지를 매칭하는 학습 보드게임" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    @font-face {
+      font-family: 'GmarketSansBold';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!--  화면 1: 게임 설정                         -->
+  <!-- ══════════════════════════════════════════ -->
+  <div id="screen-setup" class="screen active">
+    <header class="setup-header">
+      <h1 class="game-title">짝꿍 찾기 게임 설정</h1>
+      <p class="game-subtitle">Settings</p>
+    </header>
+
+    <div class="setup-body">
+
+      <!-- ────────── 왼쪽 컬럼 STEP 1 ────────── -->
+      <section class="setup-col left-col" id="step1-section">
+        <div class="step-label">
+          <span class="step-number">방법 1</span>
+          <span class="step-title">빠른 설정</span>
+        </div>
+
+        <!-- 카드 쌍 슬라이더 -->
+        <div class="setting-card">
+          <label class="setting-label" for="pair-slider">
+            🃏 카드 쌍 개수
+            <span class="pair-badge" id="pair-display">6쌍</span>
+          </label>
+          <div class="slider-wrap">
+            <span class="slider-min">2</span>
+            <input type="range" id="pair-slider" min="2" max="15" value="6" class="slider" />
+            <span class="slider-max">15</span>
+          </div>
+          <p class="setting-hint">총 <strong id="total-cards">12</strong>장의 카드가 생성돼요</p>
+        </div>
+
+        <!-- 특수 카드 옵션 -->
+        <div class="setting-card">
+          <p class="setting-label">⚙️ 게임 옵션</p>
+          <label class="toggle-row" for="lucky-toggle">
+            <div class="toggle-info">
+              <span class="toggle-icon">🍀</span>
+              <div>
+                <strong>럭키 카드</strong>
+                <small>클릭하면 랜덤으로 한 쌍 공개!</small>
+              </div>
+            </div>
+            <div class="toggle-switch-wrap">
+              <input type="checkbox" id="lucky-toggle" class="toggle-input" checked />
+              <span class="toggle-switch"></span>
+            </div>
+          </label>
+          <label class="toggle-row" for="chaos-toggle">
+            <div class="toggle-info">
+              <span class="toggle-icon">🌀</span>
+              <div>
+                <strong>혼돈 카드</strong>
+                <small>클릭하면 카드가 뒤섞여요!</small>
+              </div>
+            </div>
+            <div class="toggle-switch-wrap">
+              <input type="checkbox" id="chaos-toggle" class="toggle-input" checked />
+              <span class="toggle-switch"></span>
+            </div>
+          </label>
+          <label class="toggle-row" for="show-special-toggle">
+            <div class="toggle-info">
+              <span class="toggle-icon">🔍</span>
+              <div>
+                <strong>암기타임 특수카드 공개</strong>
+                <small>암기타임에 특수카드 위치를 보여줍니다.</small>
+              </div>
+            </div>
+            <div class="toggle-switch-wrap">
+              <input type="checkbox" id="show-special-toggle" class="toggle-input" />
+              <span class="toggle-switch"></span>
+            </div>
+          </label>
+          <div class="toggle-row">
+            <div class="toggle-info">
+              <span class="toggle-icon">⏱️</span>
+              <div>
+                <strong>암기타임 시간</strong>
+                <small>카드를 보여줄 시간(초)을 설정하세요.</small>
+              </div>
+            </div>
+            <div class="memorize-time-wrap">
+              <button class="time-btn" id="time-minus" type="button">−</button>
+              <span class="time-display" id="memorize-time-display">3</span>
+              <button class="time-btn" id="time-plus" type="button">＋</button>
+            </div>
+          </div>
+          <label class="toggle-row" for="show-img-label-toggle">
+            <div class="toggle-info">
+              <span class="toggle-icon">🏷️</span>
+              <div>
+                <strong>사진 카드에 키워드 표시</strong>
+                <small>이미지 카드 아래에 용어를 보여줍니다.</small>
+              </div>
+            </div>
+            <div class="toggle-switch-wrap">
+              <input type="checkbox" id="show-img-label-toggle" class="toggle-input" checked />
+              <span class="toggle-switch"></span>
+            </div>
+          </label>
+        </div>
+
+        <!-- 이미지 일괄 업로드 -->
+        <div class="setting-card upload-card">
+          <p class="setting-label">📂 이미지 일괄 업로드</p>
+          <div class="drop-zone" id="drop-zone">
+            <div class="drop-zone-inner">
+              <div class="drop-icon">📁</div>
+              <p class="drop-text">이미지를 여기에 드래그하거나<br/><strong>클릭해서 선택</strong>하세요</p>
+              <p class="drop-hint">파일명이 자동으로 용어가 됩니다<br/>JPG, PNG, WEBP, GIF 지원</p>
+            </div>
+            <input type="file" id="bulk-upload" multiple accept="image/*" class="file-input-hidden" />
+          </div>
+          <div id="bulk-preview" class="bulk-preview"></div>
+        </div>
+
+        <button class="btn-primary" id="btn-start" onclick="startGame()">
+          🎮 게임 시작!
+        </button>
+      </section>
+
+      <!-- ────────── 중앙 구분선 ────────── -->
+      <div class="divider-col">
+        <div class="divider-line"></div>
+        <div class="divider-badge">또<br/>는<br/><br/>방<br/>법<br/>2<br/>에<br/>서<br/><br/>개<br/>별<br/><br/>입<br/>력</div>
+        <div class="divider-line"></div>
+      </div>
+
+      <!-- ────────── 오른쪽 컬럼 STEP 2 ────────── -->
+      <section class="setup-col right-col" id="step2-section">
+        <div class="step-label">
+          <span class="step-number">방법 2</span>
+          <span class="step-title">개별 카드 설정</span>
+        </div>
+
+        <div class="card-list-scroll" id="card-list">
+          <!-- JS로 동적 생성 -->
+        </div>
+      </section>
+    </div>
+
+    <footer class="setup-footer">
+      <p>© 가재쌤 | <a href="https://blog.naver.com/gajae_ssam" target="_blank" class="footer-link">수업 자료 공유</a></p>
+    </footer>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!--  화면 2: 게임 플레이                       -->
+  <!-- ══════════════════════════════════════════ -->
+  <div id="screen-game" class="screen">
+    <div class="game-topbar">
+      <button class="btn-back" id="btn-back" onclick="goBack()">← 설정으로</button>
+      <div class="game-title-bar">
+        <span class="game-title-small">짝꿍 찾기 게임</span>
+      </div>
+      <div class="dashboard">
+        <div class="dash-item" id="dash-attempts">
+          <span class="dash-icon">🎯</span>
+          <div class="dash-info">
+            <span class="dash-label">시도 횟수</span>
+            <span class="dash-value" id="attempt-count">0</span>
+          </div>
+        </div>
+        <div class="dash-item" id="dash-remaining">
+          <span class="dash-icon">🃏</span>
+          <div class="dash-info">
+            <span class="dash-label">남은 쌍</span>
+            <span class="dash-value" id="remaining-count">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 암기 단계 오버레이 -->
+    <div class="memorize-overlay" id="memorize-overlay">
+      <div class="memorize-box">
+        <div class="memorize-icon">👀</div>
+        <h2 class="memorize-title">암기타임!</h2>
+        <p class="memorize-sub">3초 동안 카드를 확인하세요</p>
+        <div class="memorize-countdown" id="memorize-countdown">3</div>
+      </div>
+    </div>
+
+    <div class="board-wrapper" id="board-wrapper">
+      <div class="card-board" id="card-board">
+        <!-- JS로 동적 생성 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!--  화면 3: 결과 화면                         -->
+  <!-- ══════════════════════════════════════════ -->
+  <div id="screen-result" class="screen">
+    <div class="result-container">
+      <div class="result-box">
+        <div class="result-emoji" id="result-emoji">🎉</div>
+        <h2 class="result-title">게임 클리어!</h2>
+        <p class="result-sub">모든 짝꿍을 찾았어요!</p>
+        <div class="result-stats">
+          <div class="stat-item">
+            <span class="stat-label">총 시도 횟수</span>
+            <span class="stat-value" id="result-attempts">0</span>
+            <span class="stat-unit">회</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">맞춘 쌍</span>
+            <span class="stat-value" id="result-pairs">0</span>
+            <span class="stat-unit">쌍</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">정확도</span>
+            <span class="stat-value" id="result-accuracy">-</span>
+            <span class="stat-unit">%</span>
+          </div>
+        </div>
+        <div class="result-rating" id="result-rating"></div>
+        <div class="result-buttons">
+          <button class="btn-primary" onclick="restartGame()">🔄 다시 하기</button>
+          <button class="btn-secondary" onclick="goBack()">⚙️ 설정으로</button>
+        </div>
+      </div>
+    </div>
+    <footer class="result-footer">
+      <p>© 가재쌤 | <a href="https://blog.naver.com/gajae_ssam" target="_blank" class="footer-link">수업 자료 공유</a></p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
