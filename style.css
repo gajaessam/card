@@ -40,10 +40,13 @@
 html, body {
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden; /* 가로 스크롤 방지 */
+  overflow-y: auto;   /* 세로 스크롤 허용 (대화면에서 뻥튀기 방지) */
   background: var(--bg-main);
   font-family: var(--font-body);
   color: var(--text-dark);
+  display: flex;
+  flex-direction: column;
 }
 
 /* ─── 1. 화면 전환 ─── */
@@ -98,34 +101,33 @@ html, body {
 
 /* 설정 본문 2컬럼 */
 .setup-body {
-  flex: 1;
+  flex: 0 1 auto; /* 높이에 따라 유연하게 */
   display: flex;
-  align-items: flex-start; /* 콘텐츠 높이에 맞춰 정렬 */
+  gap: 20px;     /* 박스 사이 간격 고정 */
+  max-width: 1200px; /* 로컬에서 보던 그 정갈한 너비 */
+  margin: 40px auto; /* 위아래 여백을 주어 화면 중앙에 배치 */
+  width: 95%;    /* 모바일 대응용 */
+  align-items: flex-start; /* 자식 요소들이 아래로 길게 늘어나는 것 방지 */
   overflow: hidden;
-  gap: 0;
-  max-width: 1280px;
-  margin: 0 auto;
-  width: 100%;
 }
 
 .setup-col {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  gap: 8px;
-  padding: 12px 18px;
-  overflow-y: auto; /* keep as auto but aim for no scroll */
-  margin: 10px;
+  gap: 15px;
+  padding: 24px;
   background: var(--bg-card);
   border: 3px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  max-height: calc(100vh - 120px); /* 헤더/푸터 제외 높이 제한 */
+  height: auto; /* 내용만큼만 높이 차지 */
+  max-height: 85vh; /* 너무 길어지면 내부 스크롤 */
+  overflow-y: auto;
 }
 
-.left-col  { flex: 5.5; min-width: 500px; }
-.right-col { flex: 4.5; min-width: 0; }
+.left-col  { flex: 0 0 450px; } /* 왼쪽은 딱 고정 */
+.right-col { flex: 1; min-width: 500px; } /* 오른쪽은 남는 공간 사용 */
 
 /* STEP 레이블 */
 .step-label {
@@ -445,7 +447,7 @@ html, body {
 
 /* ─── 중앙 구분선 ─── */
 .divider-col {
-  flex: 0 0 60px;
+  flex: 0 0 40px; /* 너무 넓지 않게 */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -525,7 +527,8 @@ html, body {
 .card-term-input {
   flex: 1;
   font-family: var(--font-body);
-  font-size: 0.88rem;
+  font-size: 1rem !important; /* clamp 대신 고정 크기 사용 권장 */
+  height: 40px;
   border: 2px solid #D0C8B8;
   border-radius: var(--radius-sm);
   padding: 6px 10px;
