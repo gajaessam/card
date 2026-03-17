@@ -40,13 +40,10 @@
 html, body {
   width: 100%;
   height: 100%;
-  overflow-x: hidden; /* 가로 스크롤 방지 */
-  overflow-y: auto;   /* 세로 스크롤 허용 (대화면에서 뻥튀기 방지) */
+  overflow: hidden;
   background: var(--bg-main);
   font-family: var(--font-body);
   color: var(--text-dark);
-  display: flex;
-  flex-direction: column;
 }
 
 /* ─── 1. 화면 전환 ─── */
@@ -101,33 +98,41 @@ html, body {
 
 /* 설정 본문 2컬럼 */
 .setup-body {
-  flex: 0 1 auto; /* 높이에 따라 유연하게 */
+  flex: 1;
   display: flex;
-  gap: 20px;     /* 박스 사이 간격 고정 */
-  max-width: 1200px; /* 로컬에서 보던 그 정갈한 너비 */
-  margin: 40px auto; /* 위아래 여백을 주어 화면 중앙에 배치 */
-  width: 95%;    /* 모바일 대응용 */
-  align-items: flex-start; /* 자식 요소들이 아래로 길게 늘어나는 것 방지 */
   overflow: hidden;
+  gap: 0;
+  max-width: 2600px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 40px;
 }
 
 .setup-col {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  padding: 24px;
+  gap: 8px;
+  padding: 12px 18px;
+  overflow-y: auto; /* keep as auto but aim for no scroll */
+  margin: 10px;
   background: var(--bg-card);
   border: 3px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  height: auto; /* 내용만큼만 높이 차지 */
-  max-height: 85vh; /* 너무 길어지면 내부 스크롤 */
-  overflow-y: auto;
 }
 
-.left-col  { flex: 0 0 450px; } /* 왼쪽은 딱 고정 */
-.right-col { flex: 1; min-width: 500px; } /* 오른쪽은 남는 공간 사용 */
+.left-col { 
+  flex: 5.5; 
+  min-width: 450px; 
+  display: flex;
+  flex-direction: column;
+}
+
+.right-col { 
+  flex: 4.5; 
+  min-width: 400px; /* 너무 작아지지 않게 최소폭 유지 */
+}
 
 /* STEP 레이블 */
 .step-label {
@@ -158,7 +163,7 @@ html, body {
   border: 2.5px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 10px 14px;
+  padding: clamp(10px, 1.5vh, 20px); /* 세로 해상도에 따라 패딩 조절 */
   flex-shrink: 0;
 }
 
@@ -447,7 +452,7 @@ html, body {
 
 /* ─── 중앙 구분선 ─── */
 .divider-col {
-  flex: 0 0 40px; /* 너무 넓지 않게 */
+  flex: 0 0 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -527,8 +532,7 @@ html, body {
 .card-term-input {
   flex: 1;
   font-family: var(--font-body);
-  font-size: 1rem !important; /* clamp 대신 고정 크기 사용 권장 */
-  height: 40px;
+  font-size: 0.88rem;
   border: 2px solid #D0C8B8;
   border-radius: var(--radius-sm);
   padding: 6px 10px;
@@ -821,7 +825,7 @@ html, body {
 }
 .card-back-number {
   font-family: var(--font-gmarket);
-  font-size: clamp(2rem, 5vh, 3.5rem);
+  font-size: clamp(3rem, 10vh, 6rem);
   color: #000000;
   opacity: 1;
   text-shadow: 2px 2px 0 rgba(255,255,255,0.8);
@@ -848,7 +852,7 @@ html, body {
 /* 텍스트 카드 */
 .card-term {
   font-family: var(--font-gmarket);
-  font-size: clamp(1.2rem, 3vh, 2rem);
+  font-size: clamp(1.4rem, 6vh, 4rem);
   color: #000000;
   text-align: center;
   word-break: keep-all;
@@ -866,7 +870,7 @@ html, body {
 }
 .card-img-label {
   font-family: var(--font-gmarket);
-  font-size: clamp(0.8rem, 1.25vh, 1.4rem);
+  font-size: clamp(1rem, 2.5vh, 1.8rem);
   color: #333333;
   text-align: center;
   margin-top: 6px;
@@ -913,14 +917,14 @@ html, body {
 /* removed distinct back colors to prevent cheating */
 .lucky-label, .chaos-label {
   font-family: var(--font-gmarket);
-  font-size: clamp(1rem, 2vh, 2rem);
+  font-size: clamp(1.2rem, 4vh, 2.5rem);
   text-align: center;
   font-weight: 400;
   line-height: 1.2;
   color: #000000;
 }
 .lucky-icon, .chaos-icon {
-  font-size: clamp(2rem, 5vh, 4.5rem);
+  font-size: clamp(3rem, 10vh, 7rem);
 }
 
 /* 특수 카드 — 혼돈 */

@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <style>
     @font-face {
       font-family: 'GmarketSansBold';
@@ -126,7 +126,12 @@
 
         <!-- 이미지 일괄 업로드 -->
         <div class="setting-card upload-card">
-          <p class="setting-label">📂 이미지 일괄 업로드 <span style="font-size: 0.82rem; color: var(--text-mid); font-family: var(--font-body); margin-left: 8px; font-weight: 400;">(파일명이 용어로 자동 입력됩니다. 예: 사과.jpg → 사과)</span></p>
+          <p class="setting-label">
+            📂 이미지 일괄 업로드
+            <span style="font-size: 0.8rem; font-family: var(--font-body); color: var(--text-mid); font-weight: 400; margin-left: 10px;">
+              (파일명이 키워드가 됩니다. 예: 사과.jpg → '사과')
+            </span>
+          </p>
           <div class="drop-zone" id="drop-zone">
             <div class="drop-zone-inner">
               <div class="drop-icon">📁</div>
